@@ -1,0 +1,11 @@
+{
+  "defaultCommandTimeout": 100000,
+  "chromeWebSecurity": false,
+  "baseUrl": "https://rp2.dolbyio.com/",
+  "pageLoadTimeout": 100000,
+  "env": {
+    "MAILOSAUR_API_KEY": "q1M2QVhMuByFg70R"
+  },
+  "projectId": "of1q2s",
+  "reporter": "mochawesome"
+}

@@ -1,0 +1,147 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2021-12-10T10:18:04.958Z",
+    "end": "2021-12-10T10:22:03.834Z",
+    "duration": 238876,
+    "testsRegistered": 3,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aac3c8df-8360-4752-b7e3-6c811957b8fc",
+      "title": "",
+      "fullFile": "cypress/integration/1-getting-started/createPayment.js",
+      "file": "cypress/integration/1-getting-started/createPayment.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ec256150-83d6-40cf-ad42-aeb5c5dc2de3",
+          "title": "Add US Region Credit Card",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sign In",
+              "fullTitle": "Add US Region Credit Card Sign In",
+              "timedOut": null,
+              "duration": 27665,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "si.getURL();\nsi.signIn().click();\nlo.getEmail().type(this.data.email);\nlo.getPassword().type(this.data.password);\nlo.getLoginBtn().click();\nbp.getProfile().should('be.visible');",
+              "err": {},
+              "uuid": "a78e4c90-475b-4ba4-935d-b2621fe946da",
+              "parentUUID": "ec256150-83d6-40cf-ad42-aeb5c5dc2de3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Update Profile",
+              "fullTitle": "Add US Region Credit Card Update Profile",
+              "timedOut": null,
+              "duration": 108519,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "bp.getProfile().should('be.visible').click();\nbp.getPhnumber().should('be.visible').clear();\ncy.wait(3000);\nbp.getPhnumber().type(this.data1.phoneNumber);\nbp.getSaveprofile().click();\nbp.getProfileSavemsg().should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 100000ms: Expected to find content: 'Your profile has been successfully updated!' but never did.",
+                "estack": "AssertionError: Timed out retrying after 100000ms: Expected to find content: 'Your profile has been successfully updated!' but never did.\n    at Context.eval (https://rp2.dolbyio.com/__cypress/tests?p=cypress/integration/1-getting-started/createPayment.js:163:28)",
+                "diff": null
+              },
+              "uuid": "939327f7-322c-477d-8f4e-06a146ef7687",
+              "parentUUID": "ec256150-83d6-40cf-ad42-aeb5c5dc2de3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Adding Credit Card",
+              "fullTitle": "Add US Region Credit Card Adding Credit Card",
+              "timedOut": null,
+              "duration": 101966,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "bp.getBilling().click();\ncy.get(\"body\").then($body => {\n  if (bp.getAddButton($body).length > 0) {\n    bp.getAddButton().then(function (button) {\n      const text = button.text();\n      if (text.includes('Credit Card')) {\n        cy.log(\"credit cards\");\n        cy.wrap(button).click();\n        cy.wait(10000);\n        bp.getFrame().then($iframe => {\n          const $body = bp.getFrameBody($iframe);\n          bp.getExpmonth($body).should('be.visible').select(this.data1.CC_Month);\n          bp.getExpyear($body).should('be.visible').select(this.data1.CC_year);\n          bp.getCCnum().should('be.visible').type(this.data1.CC_num);\n          bp.getCCcode($body).should('be.visible').type(this.data1.CC_code);\n          bp.getCCname($body).should('be.visible').type(this.data1.CC_name);\n          bp.getCCcountry($body).should('be.visible').select(this.data1.CC_country_US);\n          bp.getCCsubmit($body).should('be.visible').click();\n          bp.getCloseBtn().click();\n        });\n      } else {\n        bp.getAddBillinfor().click();\n        bp.getBillAddress().clear().type(this.data1.Bill_addr);\n        bp.getBillAdres2().clear().type(this.data1.Bill_addr2);\n        bp.getCity().clear().type(this.data1.Bill_city);\n        bp.getZip().clear().type(this.data1.Bill_zip);\n        bp.getNxtStep().click();\n        cy.wait(10000);\n        bp.getFrame().then($iframe => {\n          const $body = bp.getFrameBody($iframe);\n          bp.getExpmonth($body).should('be.visible').select(this.data1.CC_Month);\n          bp.getExpyear($body).should('be.visible').select(this.data1.CC_year);\n          bp.getCCnum().should('be.visible').type(this.data1.CC_num);\n          bp.getCCcode($body).should('be.visible').type(this.data1.CC_code);\n          bp.getCCname($body).should('be.visible').type(this.data1.CC_name);\n          bp.getCCcountry($body).should('be.visible').select(this.data1.CC_country_US);\n          bp.getCCsubmit($body).should('be.visible').click();\n          bp.getCloseBtn().click();\n        });\n      }\n    });\n    cy.get('.style-sc-1x2wexi-0').click();\n  }\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 100000ms: Expected to find element: `.style-sc-1x2wexi-0`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 100000ms: Expected to find element: `.style-sc-1x2wexi-0`, but never found it.\n    at billingPage.getAddButton (https://rp2.dolbyio.com/__cypress/tests?p=cypress/integration/1-getting-started/createPayment.js:269:15)\n    at Context.eval (https://rp2.dolbyio.com/__cypress/tests?p=cypress/integration/1-getting-started/createPayment.js:168:14)",
+                "diff": null
+              },
+              "uuid": "bdf6bc97-525e-4b29-9d61-dbb4cd07f6aa",
+              "parentUUID": "ec256150-83d6-40cf-ad42-aeb5c5dc2de3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a78e4c90-475b-4ba4-935d-b2621fe946da"
+          ],
+          "failures": [
+            "939327f7-322c-477d-8f4e-06a146ef7687",
+            "bdf6bc97-525e-4b29-9d61-dbb4cd07f6aa"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 238150,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.0.1"
+    }
+  }
+}
