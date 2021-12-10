@@ -22,8 +22,8 @@ describe("Add US Region Credit Card", function () {
     cy.fixture("example").then(function (data) {
       this.data = data
     })
-    cy.fixture("Dashboard").then(function (data1) {
-      this.data1 = data1
+    cy.fixture("Dashboard").then(function (dashboard) {
+      this.dashboard = dashboard
     })
 
 
@@ -42,7 +42,7 @@ describe("Add US Region Credit Card", function () {
     bp.getProfile().should('be.visible').click()
     bp.getPhnumber().should('be.visible').clear()
     cy.wait(3000)
-    bp.getPhnumber().type(this.data1.phoneNumber)
+    bp.getPhnumber().type(this.dashboard.phoneNumber)
     bp.getSaveprofile().click()
     bp.getProfileSavemsg().should('be.visible')
   })
@@ -60,12 +60,12 @@ describe("Add US Region Credit Card", function () {
               .then(($iframe) => {
                 const $body = bp.getFrameBody($iframe)
 
-                bp.getExpmonth($body).should('be.visible').select(this.data1.CC_Month)
-                bp.getExpyear($body).should('be.visible').select(this.data1.CC_year)
-                bp.getCCnum().should('be.visible').type(this.data1.CC_num)
-                bp.getCCcode($body).should('be.visible').type(this.data1.CC_code)
-                bp.getCCname($body).should('be.visible').type(this.data1.CC_name)
-                bp.getCCcountry($body).should('be.visible').select(this.data1.CC_country_US)
+                bp.getExpmonth($body).should('be.visible').select(this.dashboard.CC_Month)
+                bp.getExpyear($body).should('be.visible').select(this.dashboard.CC_year)
+                bp.getCCnum().should('be.visible').type(this.dashboard.CC_num)
+                bp.getCCcode($body).should('be.visible').type(this.dashboard.CC_code)
+                bp.getCCname($body).should('be.visible').type(this.dashboard.CC_name)
+                bp.getCCcountry($body).should('be.visible').select(this.dashboard.CC_country_US)
                 bp.getCCsubmit($body).should('be.visible').click()
                 bp.getCloseBtn().click()
 
@@ -74,22 +74,22 @@ describe("Add US Region Credit Card", function () {
 
           } else {
             bp.getAddBillinfor().click()
-            bp.getBillAddress().clear().type(this.data1.Bill_addr)
-            bp.getBillAdres2().clear().type(this.data1.Bill_addr2)
-            bp.getCity().clear().type(this.data1.Bill_city)
-            bp.getZip().clear().type(this.data1.Bill_zip)
+            bp.getBillAddress().clear().type(this.dashboard.Bill_addr)
+            bp.getBillAdres2().clear().type(this.dashboard.Bill_addr2)
+            bp.getCity().clear().type(this.dashboard.Bill_city)
+            bp.getZip().clear().type(this.dashboard.Bill_zip)
             bp.getNxtStep().click()
             cy.wait(10000)
             bp.getFrame()
               .then(($iframe) => {
                 const $body = bp.getFrameBody($iframe)
 
-                bp.getExpmonth($body).should('be.visible').select(this.data1.CC_Month)
-                bp.getExpyear($body).should('be.visible').select(this.data1.CC_year)
-                bp.getCCnum().should('be.visible').type(this.data1.CC_num)
-                bp.getCCcode($body).should('be.visible').type(this.data1.CC_code)
-                bp.getCCname($body).should('be.visible').type(this.data1.CC_name)
-                bp.getCCcountry($body).should('be.visible').select(this.data1.CC_country_US)
+                bp.getExpmonth($body).should('be.visible').select(this.dashboard.CC_Month)
+                bp.getExpyear($body).should('be.visible').select(this.dashboard.CC_year)
+                bp.getCCnum().should('be.visible').type(this.dashboard.CC_num)
+                bp.getCCcode($body).should('be.visible').type(this.dashboard.CC_code)
+                bp.getCCname($body).should('be.visible').type(this.dashboard.CC_name)
+                bp.getCCcountry($body).should('be.visible').select(this.dashboard.CC_country_US)
                 bp.getCCsubmit($body).should('be.visible').click()
                 bp.getCloseBtn().click()
 
